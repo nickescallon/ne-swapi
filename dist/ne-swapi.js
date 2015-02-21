@@ -61,25 +61,13 @@
   function swapiFilms(apiHelpers, ENDPOINTS) {
 
     var service = {
-      byId: byId,
-      byPage: byPage,
-      all: all
+      all: apiHelpers.getAll(ENDPOINTS.FILMS),
+      byId: apiHelpers.getRecord(ENDPOINTS.FILMS),
+      byPage: apiHelpers.getPaged(ENDPOINTS.FILMS),
+      schema: apiHelpers.getSchema(ENDPOINTS.FILMS)
     };
 
     return service;
-
-    function byId(id) {
-      return apiHelpers.getRecord(ENPOINTS.FILMS, id);
-    }
-
-    function byPage(pageNumber) {
-      return apiHelpers.getPaged(ENDPOINTS.FILMS, pageNumber);
-    }
-
-    function all() {
-      return apiHelpers.getAll(ENDPOINTS.FILMS);
-    }
-
   }
 
 })();
@@ -91,55 +79,56 @@
   apiHelpers.$inject = ['$http', '$q'];
   function apiHelpers($http, $q) {
     var service = {
-      get: get,
+      getAll: getAll,
       getRecord: getRecord,
       getPaged: getPaged,
-      getSchema: getSchema,
-      getAll: getAll
+      getSchema: getSchema
     };
 
     return service;
 
-    function get(url) {
-      return $http.get(url);
-    }
-
-    function getPaged(url, page) {
-      return $http.get( url + '?page=' + (page || '') );
-    }
-
-    function getRecord(url, id) {
-      return $http.get( url + 'id/' + id + '/' );
-    }
-
-    function getSchema(url) {
-      return $http.get( url + 'schema')
-    }
-
     function getAll(url) {
-      var service = this,
-          deferred = $q.defer(),
+      return function() {
+        var deferred = $q.defer(),
           results = [];
 
-      fetchRecords(url);
-      return deferred.promise;
+        fetchRecords(url);
+        return deferred.promise;
 
-      function fetchRecords(url) {
-        service.get(url)
-        .then(function(response) {
-          results = results.concat(response.data.results);
-          if (typeof response.data.next === 'string') {
-            fetchRecords(response.data.next)
-          } else {
-            deferred.resolve({count: results.length, results: results})
-          }
-        })
-        .catch(function(error) {
-          deferred.reject(error);
-        });
+        function fetchRecords(url) {
+          $http.get(url)
+          .then(function(response) {
+            results = results.concat(response.data.results);
+            if (typeof response.data.next === 'string') {
+              fetchRecords(response.data.next)
+            } else {
+              deferred.resolve({count: results.length, results: results})
+            }
+          })
+          .catch(function(error) {
+            deferred.reject(error);
+          });
+        }
       }
     }
 
+    function getRecord(url, id) {
+      return function(id) {
+        return $http.get( url + 'id/' + id + '/' );
+      }
+    }
+
+    function getPaged(url) {
+      return function(page) {
+        return $http.get( url + '?page=' + (page || '') );
+      }
+    }
+
+    function getSchema(url) {
+      return function() {
+        return $http.get( url + 'schema');
+      }
+    }
   }
 
 })();
@@ -152,25 +141,13 @@
   function swapiPeople(apiHelpers, ENDPOINTS) {
 
     var service = {
-      byId: byId,
-      byPage: byPage,
-      all: all
+      all: apiHelpers.getAll(ENDPOINTS.PEOPLE),
+      byId: apiHelpers.getRecord(ENDPOINTS.PEOPLE),
+      byPage: apiHelpers.getPaged(ENDPOINTS.PEOPLE),
+      schema: apiHelpers.getSchema(ENDPOINTS.PEOPLE)
     };
 
     return service;
-
-    function byId(id) {
-      return apiHelpers.getRecord(ENPOINTS.PEOPLE, id);
-    }
-
-    function byPage(pageNumber) {
-      return apiHelpers.getPaged(ENDPOINTS.PEOPLE, pageNumber);
-    }
-
-    function all() {
-      return apiHelpers.getAll(ENDPOINTS.PEOPLE);
-    }
-
   }
 
 })();
@@ -183,25 +160,13 @@
   function swapiPlanets(apiHelpers, ENDPOINTS) {
 
     var service = {
-      byId: byId,
-      byPage: byPage,
-      all: all
+      all: apiHelpers.getAll(ENDPOINTS.PLANETS),
+      byId: apiHelpers.getRecord(ENDPOINTS.PLANETS),
+      byPage: apiHelpers.getPaged(ENDPOINTS.PLANETS),
+      schema: apiHelpers.getSchema(ENDPOINTS.PLANETS)
     };
 
     return service;
-
-    function byId(id) {
-      return apiHelpers.getRecord(ENPOINTS.PLANETS, id);
-    }
-
-    function byPage(pageNumber) {
-      return apiHelpers.getPaged(ENDPOINTS.PLANETS, pageNumber);
-    }
-
-    function all() {
-      return apiHelpers.getAll(ENDPOINTS.PLANETS);
-    }
-
   }
 
 })();
@@ -214,25 +179,13 @@
   function swapiSpecies(apiHelpers, ENDPOINTS) {
 
     var service = {
-      byId: byId,
-      byPage: byPage,
-      all: all
+      all: apiHelpers.getAll(ENDPOINTS.SPECIES),
+      byId: apiHelpers.getRecord(ENDPOINTS.SPECIES),
+      byPage: apiHelpers.getPaged(ENDPOINTS.SPECIES),
+      schema: apiHelpers.getSchema(ENDPOINTS.SPECIES)
     };
 
     return service;
-
-    function byId(id) {
-      return apiHelpers.getRecord(ENPOINTS.SPECIES, id);
-    }
-
-    function byPage(pageNumber) {
-      return apiHelpers.getPaged(ENDPOINTS.SPECIES, pageNumber);
-    }
-
-    function all() {
-      return apiHelpers.getAll(ENDPOINTS.SPECIES);
-    }
-
   }
 
 })();
@@ -245,25 +198,13 @@
   function swapiStarships(apiHelpers, ENDPOINTS) {
 
     var service = {
-      byId: byId,
-      byPage: byPage,
-      all: all
+      all: apiHelpers.getAll(ENDPOINTS.STARSHIPS),
+      byId: apiHelpers.getRecord(ENDPOINTS.STARSHIPS),
+      byPage: apiHelpers.getPaged(ENDPOINTS.STARSHIPS),
+      schema: apiHelpers.getSchema(ENDPOINTS.STARSHIPS)
     };
 
     return service;
-
-    function byId(id) {
-      return apiHelpers.getRecord(ENPOINTS.STARSHIPS, id);
-    }
-
-    function byPage(pageNumber) {
-      return apiHelpers.getPaged(ENDPOINTS.STARSHIPS, pageNumber);
-    }
-
-    function all() {
-      return apiHelpers.getAll(ENDPOINTS.STARSHIPS);
-    }
-
   }
 
 })();
@@ -276,25 +217,13 @@
   function swapiVehicles(apiHelpers, ENDPOINTS) {
 
     var service = {
-      byId: byId,
-      byPage: byPage,
-      all: all
+      all: apiHelpers.getAll(ENDPOINTS.PEOPLE),
+      byId: apiHelpers.getRecord(ENDPOINTS.PEOPLE),
+      byPage: apiHelpers.getPaged(ENDPOINTS.PEOPLE),
+      schema: apiHelpers.getSchema(ENDPOINTS.PEOPLE)
     };
 
     return service;
-
-    function byId(id) {
-      return apiHelpers.getRecord(ENPOINTS.VEHICLES, id);
-    }
-
-    function byPage(pageNumber) {
-      return apiHelpers.getPaged(ENDPOINTS.VEHICLES, pageNumber);
-    }
-
-    function all() {
-      return apiHelpers.getAll(ENDPOINTS.VEHICLES);
-    }
-
   }
 
 })();
