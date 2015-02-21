@@ -1,0 +1,11 @@
+{
+  "name": "ne-swapi",
+  "version": "0.0.1",
+  "homepage": "https://github.com/nickescallon/ne-swapi",
+  "authors": [
+    "Nick Escallon <nickescallon@gmail.com>"
+  ],
+  "description": "an angular wrapper for SWAPI",
+  "main": "dist/ne-swapi.js",
+  "license": "MIT"
+}
