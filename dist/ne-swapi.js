@@ -114,7 +114,7 @@
 
     function getRecord(url, id) {
       return function(id) {
-        return $http.get( url + 'id/' + id + '/' );
+        return $http.get( url + 'id/' + (id || '1') + '/' );
       }
     }
 
