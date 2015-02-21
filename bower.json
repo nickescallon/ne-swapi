@@ -6,6 +6,14 @@
     "Nick Escallon <nickescallon@gmail.com>"
   ],
   "description": "an angular wrapper for SWAPI",
+  "keyword": [
+    "angular",
+    "swapi"
+  ],
   "main": "dist/ne-swapi.js",
-  "license": "MIT"
+  "license": "MIT",
+  "ignore": [],
+  "dependencies": {
+    "angular": ">=1.2"
+  }
 }
