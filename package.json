@@ -1,6 +1,6 @@
 {
   "name": "ne-swapi",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "an angular wrapper for SWAPI",
   "main": "dist/ne-swapi.js",
   "scripts": {
