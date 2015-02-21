@@ -1,0 +1,16 @@
+### OSX ###
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+
+# Files that might appear on external disk
+.Spotlight-V100
+.Trashes
+
+### NPM ###
+npm-debug.log
+node_modules
+
+### Bower ###
+**/bower_components/
