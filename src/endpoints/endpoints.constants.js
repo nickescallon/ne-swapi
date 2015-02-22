@@ -1,9 +1,8 @@
 (function() {
-  angular.module('ne.swapi.endpoints.constants', [])
-  .constant('ENDPOINTS', ENDPOINTS())
-  .constant('PAGE_PARAM', '?people=');
+  angular.module('ne.swapi.constants.endpoints', [])
+  .constant('endpoints', endpoints());
 
-  function ENDPOINTS() {
+  function endpoints() {
     var root = 'https://swapi.co/api/',
         people = 'people/',
         films = 'films/',

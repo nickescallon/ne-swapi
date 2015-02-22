@@ -7,7 +7,7 @@ var gulp = require('gulp'),
 
 // paths
 var appName = 'ne-swapi',
-    source = ['./lib/**/*.js'],
+    source = ['./src/**/*.js'],
     destination = './dist/';
 
 gulp.task('js', function() {
