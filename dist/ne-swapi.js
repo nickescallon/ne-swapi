@@ -1,30 +1,9 @@
 (function() {
-  angular.module('ne.swapi', [
-    'ne.swapi.constants.endpoints',
-    'ne.swapi.api'
-  ])
-  .factory('swapi', swapi);
-
-  swapi.$inject = ['endpoints', 'api'];
-  function swapi(endpoints, api) {
-
-    var service = {
-      get: api.get,
-      films: api.generate(endpoints.FILMS),
-      people: api.generate(endpoints.PEOPLE),
-      planets: api.generate(endpoints.PLANETS),
-      species: api.generate(endpoints.SPECIES),
-      starships: api.generate(endpoints.STARSHIPS),
-      vehicles: api.generate(endpoints.VEHICLES)
-    };
-
-    return service;
-  }
-
+  angular.module('ne.swapi', []);
 })();
 
 (function() {
-  angular.module('ne.swapi.constants.endpoints', [])
+  angular.module('ne.swapi')
   .constant('endpoints', endpoints());
 
   function endpoints() {
@@ -50,19 +29,24 @@
 })();
 
 (function() {
-  angular.module('ne.swapi.api', [])
-  .factory('api', api)
+  angular.module('ne.swapi')
+  .factory('swapi', swapi)
 
-  api.$inject = ['$http', '$q'];
-  function api($http, $q) {
+  swapi.$inject = ['$http', '$q', 'endpoints'];
+  function swapi($http, $q, endpoints) {
     var service = {
       get: get,
-      generate: generate
+      films: generateInterface(endpoints.FILMS),
+      people: generateInterface(endpoints.PEOPLE),
+      planets: generateInterface(endpoints.PLANETS),
+      species: generateInterface(endpoints.SPECIES),
+      starships: generateInterface(endpoints.STARSHIPS),
+      vehicles: generateInterface(endpoints.VEHICLES)
     };
 
     return service;
 
-    function generate(url) {
+    function generateInterface(url) {
       return {
         all: getAll(url),
         id: getRecord(url),
