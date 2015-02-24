@@ -1,17 +1,22 @@
 (function() {
-  angular.module('ne.swapi.api', [])
-  .factory('api', api)
+  angular.module('ne.swapi')
+  .factory('swapi', swapi)
 
-  api.$inject = ['$http', '$q'];
-  function api($http, $q) {
+  swapi.$inject = ['$http', '$q', 'endpoints'];
+  function swapi($http, $q, endpoints) {
     var service = {
       get: get,
-      generate: generate
+      films: generateInterface(endpoints.FILMS),
+      people: generateInterface(endpoints.PEOPLE),
+      planets: generateInterface(endpoints.PLANETS),
+      species: generateInterface(endpoints.SPECIES),
+      starships: generateInterface(endpoints.STARSHIPS),
+      vehicles: generateInterface(endpoints.VEHICLES)
     };
 
     return service;
 
-    function generate(url) {
+    function generateInterface(url) {
       return {
         all: getAll(url),
         id: getRecord(url),

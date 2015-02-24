@@ -1,5 +1,5 @@
 (function() {
-  angular.module('ne.swapi.constants.endpoints', [])
+  angular.module('ne.swapi')
   .constant('endpoints', endpoints());
 
   function endpoints() {
