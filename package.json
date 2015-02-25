@@ -1,7 +1,7 @@
 {
   "name": "ne-swapi",
-  "version": "0.1.0",
-  "description": "an angular wrapper for SWAPI",
+  "version": "0.1.1",
+  "description": "an angular module for SWAPI",
   "main": "dist/ne-swapi.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
