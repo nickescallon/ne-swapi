@@ -50,6 +50,7 @@
       return {
         all: getAll(url),
         id: getRecord(url),
+        get: get(url),
         page: getPaged(url),
         schema: getSchema(url)
       };
