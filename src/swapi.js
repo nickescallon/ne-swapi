@@ -63,7 +63,7 @@
 
     function getRecord(url) {
       return function(id) {
-        return get( url + 'id/' + (id || '1') + '/' );
+        return get( url + (id || '1') + '/' );
       }
     }
 
